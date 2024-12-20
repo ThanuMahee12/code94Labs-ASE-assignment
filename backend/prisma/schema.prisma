@@ -1,0 +1,29 @@
+// This is your Prisma schema file
+// Learn more: https://pris.ly/d/prisma-schema
+
+// Generator configuration for Prisma Client with MongoDB support
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["mongodb"]
+}
+
+// Datasource configuration for MongoDB
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+// Product model
+model Product {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String
+  sku         String
+  quantity    Int
+  images      String[]
+  mainImage   String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+
